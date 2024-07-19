@@ -2,6 +2,7 @@ import { useState } from "react";
 import CreatePost from "./CreatePost";
 import Post from "./Post";
 import LoginForm from "./Form";
+import { posts } from "../Mocks/Posts";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,8 +24,9 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-4">
         <CreatePost toggleModal={toggleModal} />
-        <Post />
-        <Post isEdited />
+        {posts.map((post, index) => {
+          return <Post key={index} {...post} />;
+        })}
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
